@@ -17,16 +17,14 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    private BottomSheetBehavior<View> sheetBehavior;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar =  findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab =  findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
      //   Toast.makeText(MainActivity.this, "Сохранение данных об авто", Toast.LENGTH_SHORT).show();
         Snackbar.make(view, "Сохранение данных об авто", Snackbar.LENGTH_SHORT).show();
         View bottomView = findViewById(R.id.bottom_sheet);
-        sheetBehavior = BottomSheetBehavior.from(bottomView);
+        BottomSheetBehavior<View> sheetBehavior = BottomSheetBehavior.from(bottomView);
         sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
     }
 }
