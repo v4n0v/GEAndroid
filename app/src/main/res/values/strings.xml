@@ -5,4 +5,7 @@
     <string name="enter_email">Ваш email</string>
     <string name="enter_phone">Ваш номер телефона</string>
     <string name="registration">Регистрация</string>
+    <string name="bottom_header">Выбрать авто</string>
+    <string name="bottom_body_header">Выбирите авто из списка</string>
+    <string name="bottom_button_title">Сохранить</string>
 </resources>
