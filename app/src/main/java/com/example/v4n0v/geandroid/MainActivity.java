@@ -1,8 +1,9 @@
 package com.example.v4n0v.geandroid;
 
 import android.app.AlertDialog;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetBehavior;
@@ -16,18 +17,27 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.v4n0v.geandroid.fragments.SelectGlassFragment;
+
 public class MainActivity extends AppCompatActivity {
     FloatingActionButton fab;
     BottomSheetBehavior<View> sheetBehavior;
+    SelectGlassFragment carFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        carFragment = new SelectGlassFragment();
         initUI();
         initTollbar();
         initFAB();
 
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        SelectGlassFragment fragment = new SelectGlassFragment();
+        fragmentTransaction.add(R.id.container_frame, fragment);
+        fragmentTransaction.commit();
     }
 
     private void initFAB() {
