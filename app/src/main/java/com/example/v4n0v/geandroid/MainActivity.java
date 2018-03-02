@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar =  findViewById(R.id.toolbar);
+        Toolbar toolbar =  findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab =  findViewById(R.id.fab);
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         LayoutInflater li = LayoutInflater.from(this);
         builder.setTitle(R.string.registration);
-        final View additionView = li.inflate(R.layout.activity_register, null);
+        final View additionView = li.inflate(R.layout.register_toolbar, null);
 
         builder.setView(additionView);
         builder.setCancelable(true);
