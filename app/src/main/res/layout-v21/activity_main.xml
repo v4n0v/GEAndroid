@@ -6,17 +6,37 @@
     android:layout_height="match_parent"
     tools:context="com.example.v4n0v.geandroid.MainActivity">
 
+    <!--<android.support.v7.widget.Toolbar-->
+        <!--android:id="@+id/tool_bar"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="?attr/actionBarSize"-->
+        <!--android:background="?attr/colorPrimary"-->
+        <!--android:elevation="4dp"-->
+        <!--android:theme="@style/ThemeOverlay.AppCompat.ActionBar"-->
+        <!--app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>-->
+
     <include layout="@layout/content_main" />
     <include layout="@layout/toolbar_layout" />
+    <include layout="@layout/bottom_sheet"
+        app:layout_anchor="@id/my_toolbar"
+        app:layout_anchorGravity="bottom"/>
 
-    <include layout="@layout/bottom_sheet"/>
+    <!--<android.support.design.widget.FloatingActionButton-->
+        <!--android:id="@+id/fab"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@color/colorAccent"-->
+        <!--android:src="@drawable/ic_add_black_48dp"-->
+        <!--app:layout_anchor="@layout/bottom_sheet"-->
+        <!--app:layout_anchorGravity="top|end"-->
+        <!--android:elevation="@dimen/std_elevation"-->
+     <!--/>-->
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
         android:layout_width="wrap_content"
+        android:id="@+id/fab"
         android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:layout_margin="@dimen/fab_margin"
-        android:elevation="@dimen/std_elevation"
-        app:srcCompat="@android:drawable/ic_search_category_default" />
-
+        android:background="@color/colorAccent"
+        android:src="@drawable/ic_add_fab"
+        app:layout_anchor="@+id/bottom_sheet"
+        app:layout_anchorGravity="top|end" />
 </android.support.design.widget.CoordinatorLayout>
