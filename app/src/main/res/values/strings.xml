@@ -1,11 +1,11 @@
 <resources>
     <string name="app_name">Glass Express</string>
-    <string name="action_settings">Регистрация</string>
-    <string name="enter_name">Введите имя</string>
-    <string name="enter_email">Ваш email</string>
-    <string name="enter_phone">Ваш номер телефона</string>
-    <string name="registration">Регистрация</string>
-    <string name="bottom_header">Выбрать авто</string>
-    <string name="bottom_body_header">Выбирите авто из списка</string>
-    <string name="bottom_button_title">Сохранить</string>
+    <string name="action_settings">Registration</string>
+    <string name="enter_name">Your name</string>
+    <string name="enter_email">Your email</string>
+    <string name="enter_phone">Your phone number</string>
+    <string name="registration">Registration</string>
+    <string name="bottom_header">Select your car</string>
+    <string name="bottom_body_header">Select your car from list</string>
+    <string name="bottom_button_title">Apply</string>
 </resources>

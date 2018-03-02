@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="action_settings">Настройки</string>
-
+    <string name="action_settings">Регистрация</string>
+    <string name="enter_name">Введите имя</string>
+    <string name="enter_email">Ваш email</string>
+    <string name="enter_phone">Ваш номер телефона</string>
+    <string name="registration">Регистрация</string>
+    <string name="bottom_header">Выбрать авто</string>
+    <string name="bottom_body_header">Выбирите авто из списка</string>
+    <string name="bottom_button_title">Готово</string>
 </resources>
