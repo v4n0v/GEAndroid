@@ -8,4 +8,7 @@
     <string name="bottom_header">Выбрать авто</string>
     <string name="bottom_body_header">Выбирите авто из списка</string>
     <string name="bottom_button_title">Готово</string>
+    <string name="my_orders">Мои заказы</string>
+    <string name="create_order">Создать заказ</string>
+    <string name="share">Поделиться</string>
 </resources>

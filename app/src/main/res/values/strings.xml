@@ -8,4 +8,12 @@
     <string name="bottom_header">Select your car</string>
     <string name="bottom_body_header">Select your car from list</string>
     <string name="bottom_button_title">Apply</string>
+    <string name="title_activity_main2">Main2Activity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="communicate">Communicate</string>
+    <string name="my_orders">Мои заказы</string>
+    <string name="create_order">Создать заказ</string>
+    <string name="share">Поделиться</string>
 </resources>
