@@ -1,9 +1,14 @@
 package com.example.v4n0v.geandroid;
 
 import android.app.AlertDialog;
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetBehavior;
@@ -19,38 +24,52 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.Toast;
 
+import com.example.v4n0v.geandroid.fragments.MyOrderFragment;
+import com.example.v4n0v.geandroid.fragments.RegisterFragment;
 import com.example.v4n0v.geandroid.fragments.SelectGlassFragment;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     FloatingActionButton fab;
     BottomSheetBehavior<View> sheetBehavior;
-    SelectGlassFragment carFragment;
+    SelectGlassFragment selectGlassFragment;
+    RegisterFragment registerFragment;
     Toolbar toolbar;
+    ImageView bottomPicker;
+    FragmentManager fragmentManager;
+    FragmentTransaction fragmentTransaction;
+    MyOrderFragment orderFragment;
+    DrawerLayout drawer;
+    SharedPreferences sharedPreferences;
+
+    NavigationView navigationView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        carFragment = new SelectGlassFragment();
+        selectGlassFragment = new SelectGlassFragment();
+
+
         initUI();
         initTollbar();
         initFAB();
+        showElementsUI();
 
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        SelectGlassFragment fragment = new SelectGlassFragment();
-        fragmentTransaction.add(R.id.container_frame, fragment);
-        fragmentTransaction.commit();
+        applyColors();
+        fillFragment(selectGlassFragment);
 
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+
         navigationView.setNavigationItemSelectedListener(this);
 
     }
@@ -65,6 +84,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             super.onBackPressed();
         }
     }
+
     private void initFAB() {
         fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -75,6 +95,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
     }
+
     private void initTollbar() {
 
         toolbar = findViewById(R.id.my_toolbar);
@@ -82,9 +103,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void initUI() {
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         View bottomView = findViewById(R.id.bottom_sheet);
-        sheetBehavior  = BottomSheetBehavior.from(bottomView);
-
+        sheetBehavior = BottomSheetBehavior.from(bottomView);
+        sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
 
         sheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
             @Override
@@ -133,26 +155,78 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void showRegistrationActivity(MenuItem item) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         LayoutInflater li = LayoutInflater.from(this);
-        builder.setTitle(R.string.registration);
-        final View additionView = li.inflate(R.layout.register_layout, null);
+        builder.setTitle(R.string.action_settings);
+        final View additionView = li.inflate(R.layout.options_layout, null);
 
+        // получаю настройки, узнаю, какя тема выбрана
+        sharedPreferences = getSharedPreferences(Preferences.APP_PREFERENCES, Context.MODE_PRIVATE);
+        final SharedPreferences.Editor ed = sharedPreferences.edit();
         builder.setView(additionView);
         builder.setCancelable(true);
+
+        // переключаю в выбранное состояние
+        boolean isSwitched = sharedPreferences.getBoolean(Preferences.NAV_THEME_DARK, false);
+        if (isSwitched) {
+            Switch themeSwitch = additionView.findViewById(R.id.switch_theme);
+            themeSwitch.setChecked(true);
+        }
+
         builder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                final Switch themeSwitch = additionView.findViewById(R.id.switch_theme);
+                if (themeSwitch.isChecked()) {
+                    Toast.makeText(MainActivity.this, "Теменая тема", Toast.LENGTH_SHORT).show();
+                    ed.putBoolean(Preferences.NAV_THEME_DARK, true);
 
-                Toast.makeText(MainActivity.this, "Обработка данных", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(MainActivity.this, "Светлая тема", Toast.LENGTH_SHORT).show();
+                    int colorIntText = getResources().getColor(R.color.colorWhite);
+                    int colorIntIco = getResources().getColor(R.color.colorWhite);
+                    ed.putBoolean(Preferences.NAV_THEME_DARK, false);
+                }
 
+                ed.apply();
+                applyColors();
             }
         });
         builder.show();
     }
 
 
+    void applyColors() {
+        sharedPreferences = getSharedPreferences(Preferences.APP_PREFERENCES, Context.MODE_PRIVATE);
+
+        boolean isDarkTheme = sharedPreferences.getBoolean(Preferences.NAV_THEME_DARK, false);
+        int colorIntText;
+        int colorIntIco;
+        Drawable grad;
+        if (isDarkTheme) {
+            colorIntText = getResources().getColor(R.color.colorWhite);
+            colorIntIco = getResources().getColor(R.color.colorWhite);
+            grad = getResources().getDrawable(R.drawable.side_nav_bar_black);
+        } else {
+            grad = getResources().getDrawable(R.drawable.side_nav_bar_green);
+            colorIntText = getResources().getColor(R.color.colorDarkGray);
+            colorIntIco = getResources().getColor(R.color.colorDarkGray);
+        }
+
+
+        LinearLayout navGrad = findViewById(R.id.nav_gradient);
+
+
+        ColorStateList csl = ColorStateList.valueOf(colorIntText);
+        navigationView.setItemTextColor(csl);
+        navigationView.setItemIconTintList(csl);
+
+
+
+    }
+
+
     public void saveCar(View view) {
-           Toast.makeText(MainActivity.this, "Сохранение данных об авто", Toast.LENGTH_SHORT).show();
-       // Snackbar.make(view, "Сохранение данных об авто", Snackbar.LENGTH_SHORT).show();
+        Toast.makeText(MainActivity.this, "Сохранение данных об авто", Toast.LENGTH_SHORT).show();
+        // Snackbar.make(view, "Сохранение данных об авто", Snackbar.LENGTH_SHORT).show();
         sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
     }
 
@@ -162,16 +236,59 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         if (id == R.id.nav_new_order) {
             Toast.makeText(MainActivity.this, "Новый заказ", Toast.LENGTH_SHORT).show();
+            showElementsUI();
+            fillFragment(selectGlassFragment);
+
+
         } else if (id == R.id.nav_my_orders) {
+            if (orderFragment == null) {
+                orderFragment = new MyOrderFragment();
+            }
+
+            hideElementsUI();
+
+            fillFragment(orderFragment);
             Toast.makeText(MainActivity.this, "Мои заказы", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_registration) {
-            Toast.makeText(MainActivity.this, "Регистрация", Toast.LENGTH_SHORT).show();
-        }else if (id == R.id.nav_share) {
+
+//            Intent intent1 = new Intent(MainActivity.this,RegisterActivity.class);
+//            startActivity(intent1);
+
+
+            if (registerFragment == null) {
+                registerFragment = new RegisterFragment();
+            }
+            hideElementsUI();
+            fillFragment(registerFragment);
+            navigationView.setCheckedItem(R.id.nav_registration);
+
+        } else if (id == R.id.nav_share) {
             Toast.makeText(MainActivity.this, "Поделиться", Toast.LENGTH_SHORT).show();
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
+    void hideElementsUI() {
+        sheetBehavior.setHideable(true);
+        sheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+        fab.hide();
+    }
+
+    void showElementsUI() {
+        sheetBehavior.setHideable(false);
+        sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+        fab.show();
+    }
+
+    void fillFragment(Fragment fragment) {
+        fragmentManager = getFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        //   SelectGlassFragment fragment = new SelectGlassFragment();
+        fragmentTransaction.replace(R.id.container_frame, fragment);
+        fragmentTransaction.commit();
+    }
+
 }

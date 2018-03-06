@@ -4,41 +4,62 @@
     android:id="@+id/bottom_sheet"
     android:layout_width="match_parent"
     android:layout_height="500dp"
-    android:background="@color/colorWhite"
     android:orientation="vertical"
-    app:behavior_hideable="false"
-    app:behavior_peekHeight="50dp"
+    app:behavior_hideable="true"
+    app:behavior_peekHeight="85dp"
     app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
+
+
+    <ImageView
+        android:id="@+id/bottom_header_ico"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/ic_arrow_drop_up" />
 
 
     <TextView
         android:id="@+id/bottom_header"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_below="@+id/bottom_header_ico"
         android:background="@color/colorPrimaryDark"
         android:gravity="center"
         android:text="@string/bottom_header"
         android:textColor="@color/colorWhite" />
 
     <TextView
+        android:id="@+id/bottom_header2"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_below="@+id/bottom_header"
         android:background="@color/colorPrimary"
         android:gravity="center"
-        android:layout_below="@+id/bottom_header"
         android:text="@string/bottom_body_header"
         android:textColor="@color/colorWhite" />
 
+    <LinearLayout
+        android:layout_below="@+id/bottom_header2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+      >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
     <!--тут будет выбор марки\модели\поколения авто, осталось определиться с представлением-->
 
     <Button
+        style="@style/BlackButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_gravity="bottom"
 
         android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
         android:onClick="saveCar"
-        style="@style/MyButtonStyle"
         android:text="@string/bottom_button_title"
         android:textColor="@color/colorWhite" />
 </RelativeLayout>

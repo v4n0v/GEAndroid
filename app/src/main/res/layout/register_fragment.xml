@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_marginTop="?attr/actionBarSize">
 
     <!--вызывается из меню (menu_main)-->
 
@@ -23,23 +23,22 @@
             android:id="@+id/editTextName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
             android:hint="@string/enter_name"
-            android:theme="@style/EditTextStyle"/>
+            android:inputType="textPersonName"
+            android:theme="@style/EditTextStyle" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/phoneTextInputLayout"
-        app:hintTextAppearance="@style/EditTextHintStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+        android:layout_below="@+id/registerTextInputLayout"
         app:counterEnabled="true"
-        app:errorEnabled="true"
         app:counterMaxLength="11"
         app:counterOverflowTextAppearance="@style/CounterStyle"
+        app:errorEnabled="true"
         app:errorTextAppearance="@style/AlertDialog.AppCompat"
-  >
+        app:hintTextAppearance="@style/EditTextHintStyle">
 
 
         <EditText
@@ -48,19 +47,18 @@
             android:layout_height="wrap_content"
             android:hint="@string/enter_phone"
             android:inputType="phone"
-            android:theme="@style/EditTextStyle"/>
+            android:theme="@style/EditTextStyle" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/mailTextInputLayout"
-        app:hintTextAppearance="@style/EditTextHintStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+        android:layout_below="@+id/phoneTextInputLayout"
         app:counterEnabled="true"
         app:counterMaxLength="25"
         app:counterOverflowTextAppearance="@style/CounterStyle"
- >
+        app:hintTextAppearance="@style/EditTextHintStyle">
 
         <EditText
             android:id="@+id/editTextMail"
@@ -68,17 +66,18 @@
             android:layout_height="wrap_content"
             android:hint="@string/enter_email"
             android:inputType="textEmailAddress"
-            android:theme="@style/EditTextStyle"/>
+            android:theme="@style/EditTextStyle" />
     </android.support.design.widget.TextInputLayout>
 
-    <!--<Button-->
-        <!--android:id="@+id/button"-->
-        <!--android:background="@color/colorPrimary"-->
-        <!--android:textColor="@color/colorWhite"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="48dp"-->
-        <!--android:layout_marginBottom="8dp"-->
-        <!--android:text="@string/registration"-->
-        <!--app:layout_constraintBottom_toBottomOf="parent" />-->
+    <Button
+        android:id="@+id/accept_reg_button"
+        style="@style/BlackButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="8dp"
+        android:onClick="confirmRegistration"
+        android:text="@string/registration"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
-</LinearLayout>
+</RelativeLayout>

@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#388E3C</color>
     <color name="primary_light">#C8E6C9</color>
     <color name="colorAccent">#212121</color>
-    <color name="primary_text">#212121</color>
+    <color name="colorDarkGray">#212121</color>
     <color name="secondary_text">#757575</color>
     <color name="icons">#FFFFFF</color>
     <color name="divider">#BDBDBD</color>
@@ -17,5 +17,5 @@
 
     <color name="colorWhite">#EEE</color>
     <color name="colorBG">#81c24b</color>
-
+    <color name="colorBlack">#000</color>
 </resources>
