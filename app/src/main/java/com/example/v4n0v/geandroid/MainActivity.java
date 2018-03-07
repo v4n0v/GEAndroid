@@ -201,14 +201,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int colorIntText;
         int colorIntIco;
         Drawable grad;
+        int colorBG;
         if (isDarkTheme) {
             colorIntText = getResources().getColor(R.color.colorWhite);
             colorIntIco = getResources().getColor(R.color.colorWhite);
+            colorBG = getResources().getColor(R.color.colorDarkGray);
             grad = getResources().getDrawable(R.drawable.side_nav_bar_black);
         } else {
             grad = getResources().getDrawable(R.drawable.side_nav_bar_green);
             colorIntText = getResources().getColor(R.color.colorDarkGray);
             colorIntIco = getResources().getColor(R.color.colorDarkGray);
+            colorBG = getResources().getColor(R.color.colorWhite);
         }
 
 
@@ -217,8 +220,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         ColorStateList csl = ColorStateList.valueOf(colorIntText);
         navigationView.setItemTextColor(csl);
-        navigationView.setItemIconTintList(csl);
 
+
+        navigationView.setItemIconTintList(csl);
+        navigationView.setBackgroundColor(colorBG);
 
 
     }
