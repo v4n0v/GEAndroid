@@ -16,6 +16,8 @@
 
 
     <color name="colorWhite">#EEE</color>
+    <color name="colorGrayLight">@color/abc_secondary_text_material_dark</color>
+    <color name="colorGrayDark">#363636</color>
     <color name="colorBG">#81c24b</color>
     <color name="colorBlack">#000</color>
 </resources>

@@ -20,6 +20,9 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Menu;
@@ -48,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ImageView bottomIco;
     NavigationView navigationView;
 
+    private final String TAG = "MainActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -200,28 +204,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         boolean isDarkTheme = sharedPreferences.getBoolean(Preferences.NAV_THEME_DARK, false);
         int colorIntText;
         int colorIntIco;
-        Drawable grad;
+
         int colorBG;
+        int colorGroupText;
         if (isDarkTheme) {
             colorIntText = getResources().getColor(R.color.colorWhite);
             colorIntIco = getResources().getColor(R.color.colorWhite);
             colorBG = getResources().getColor(R.color.colorDarkGray);
-            grad = getResources().getDrawable(R.drawable.side_nav_bar_black);
+            colorGroupText =  getResources().getColor(R.color.colorGrayLight);
         } else {
-            grad = getResources().getDrawable(R.drawable.side_nav_bar_green);
             colorIntText = getResources().getColor(R.color.colorDarkGray);
+            colorGroupText =  getResources().getColor(R.color.colorGrayDark);
             colorIntIco = getResources().getColor(R.color.colorDarkGray);
             colorBG = getResources().getColor(R.color.colorWhite);
         }
 
-
-        LinearLayout navGrad = findViewById(R.id.nav_gradient);
+        MenuItem menuItem = navigationView.getMenu().getItem(3);
+        SpannableString s = new SpannableString(menuItem.getTitle());
+        s.setSpan(new ForegroundColorSpan(colorGroupText), 0, s.length(), 0);
+        menuItem.setTitle(s);
 
 
         ColorStateList csl = ColorStateList.valueOf(colorIntText);
         navigationView.setItemTextColor(csl);
-
-
         navigationView.setItemIconTintList(csl);
         navigationView.setBackgroundColor(colorBG);
 
@@ -241,32 +246,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         if (id == R.id.nav_new_order) {
             Toast.makeText(MainActivity.this, "Новый заказ", Toast.LENGTH_SHORT).show();
-            showElementsUI();
-            fillFragment(selectGlassFragment);
 
+            fillFragment(selectGlassFragment);
+            showElementsUI();
 
         } else if (id == R.id.nav_my_orders) {
             if (orderFragment == null) {
                 orderFragment = new MyOrderFragment();
             }
 
-            hideElementsUI();
-
             fillFragment(orderFragment);
+            hideElementsUI();
             Toast.makeText(MainActivity.this, "Мои заказы", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_registration) {
-
-//            Intent intent1 = new Intent(MainActivity.this,RegisterActivity.class);
-//            startActivity(intent1);
-
 
             if (registerFragment == null) {
                 registerFragment = new RegisterFragment();
             }
-            hideElementsUI();
+
             fillFragment(registerFragment);
             navigationView.setCheckedItem(R.id.nav_registration);
-
+            hideElementsUI();
         } else if (id == R.id.nav_share) {
             Toast.makeText(MainActivity.this, "Поделиться", Toast.LENGTH_SHORT).show();
         }
@@ -279,21 +279,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     void hideElementsUI() {
         sheetBehavior.setHideable(true);
         sheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
-        fab.hide();
+        fab.setSize(0);
         bottomIco.setVisibility(View.INVISIBLE);
     }
 
     void showElementsUI() {
         sheetBehavior.setHideable(false);
         sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-        fab.show();
+        fab.setSize(1);
         bottomIco.setVisibility(View.VISIBLE);
     }
 
     void fillFragment(Fragment fragment) {
         fragmentManager = getFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
-        //   SelectGlassFragment fragment = new SelectGlassFragment();
+
         fragmentTransaction.replace(R.id.container_frame, fragment);
         fragmentTransaction.commit();
     }

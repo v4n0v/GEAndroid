@@ -30,6 +30,8 @@
         android:id="@+id/nav_mail_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Welcome to GlassExpress" />
+        android:text="Welcome to GlassExpress"
+        android:textColor="@color/colorGrayLight"
+        android:textSize="12sp" />
 
 </LinearLayout>
