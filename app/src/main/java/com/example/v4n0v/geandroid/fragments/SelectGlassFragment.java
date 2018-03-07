@@ -10,10 +10,6 @@ import android.view.ViewGroup;
 
 import com.example.v4n0v.geandroid.R;
 
-/**
- * Created by v4n0v on 02.03.18.
- */
-
 public class SelectGlassFragment extends Fragment {
 
     @Nullable
