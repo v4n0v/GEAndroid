@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     MyOrderFragment orderFragment;
     DrawerLayout drawer;
     SharedPreferences sharedPreferences;
-
+    ImageView bottomIco;
     NavigationView navigationView;
 
     @Override
@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         View bottomView = findViewById(R.id.bottom_sheet);
         sheetBehavior = BottomSheetBehavior.from(bottomView);
         sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-
+        bottomIco = findViewById(R.id.bottom_header_ico);
         sheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
             @Override
             public void onStateChanged(@NonNull View bottomSheet, int newState) {
@@ -275,12 +275,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         sheetBehavior.setHideable(true);
         sheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
         fab.hide();
+        bottomIco.setVisibility(View.INVISIBLE);
     }
 
     void showElementsUI() {
         sheetBehavior.setHideable(false);
         sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
         fab.show();
+        bottomIco.setVisibility(View.VISIBLE);
     }
 
     void fillFragment(Fragment fragment) {
