@@ -6,9 +6,9 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetBehavior;
@@ -22,16 +22,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import com.example.v4n0v.geandroid.data.Preferences;
 import com.example.v4n0v.geandroid.fragments.MyOrderFragment;
 import com.example.v4n0v.geandroid.fragments.RegisterFragment;
 import com.example.v4n0v.geandroid.fragments.SelectGlassFragment;
@@ -48,10 +47,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     MyOrderFragment orderFragment;
     DrawerLayout drawer;
     SharedPreferences sharedPreferences;
-    ImageView bottomIco;
-    NavigationView navigationView;
 
-    private final String TAG = "MainActivity";
+    NavigationView navigationView;
+    private ImageView bottomIco;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void initTollbar() {
-
+        bottomIco = findViewById(R.id.bottom_header_ico);
         toolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
     }
@@ -111,7 +110,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         View bottomView = findViewById(R.id.bottom_sheet);
         sheetBehavior = BottomSheetBehavior.from(bottomView);
         sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-        bottomIco = findViewById(R.id.bottom_header_ico);
+
         sheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
             @Override
             public void onStateChanged(@NonNull View bottomSheet, int newState) {
@@ -211,19 +210,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             colorIntText = getResources().getColor(R.color.colorWhite);
             colorIntIco = getResources().getColor(R.color.colorWhite);
             colorBG = getResources().getColor(R.color.colorDarkGray);
-            colorGroupText =  getResources().getColor(R.color.colorGrayLight);
+            colorGroupText = getResources().getColor(R.color.colorGrayLight);
         } else {
             colorIntText = getResources().getColor(R.color.colorDarkGray);
-            colorGroupText =  getResources().getColor(R.color.colorGrayDark);
+            colorGroupText = getResources().getColor(R.color.colorGrayDark);
             colorIntIco = getResources().getColor(R.color.colorDarkGray);
             colorBG = getResources().getColor(R.color.colorWhite);
         }
 
-        MenuItem menuItem = navigationView.getMenu().getItem(3);
+        MenuItem menuItem = navigationView.getMenu().getItem(4);
         SpannableString s = new SpannableString(menuItem.getTitle());
         s.setSpan(new ForegroundColorSpan(colorGroupText), 0, s.length(), 0);
         menuItem.setTitle(s);
-
 
         ColorStateList csl = ColorStateList.valueOf(colorIntText);
         navigationView.setItemTextColor(csl);
@@ -269,8 +267,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             hideElementsUI();
         } else if (id == R.id.nav_share) {
             Toast.makeText(MainActivity.this, "Поделиться", Toast.LENGTH_SHORT).show();
-        }
 
+        } else if (id == R.id.nav_about) {
+            Intent intent1 = new Intent(MainActivity.this, ScrollingActivity.class);
+            startActivity(intent1);
+
+        }
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
@@ -279,21 +281,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     void hideElementsUI() {
         sheetBehavior.setHideable(true);
         sheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
-        fab.setSize(0);
+
+        fab.setVisibility(View.INVISIBLE);
         bottomIco.setVisibility(View.INVISIBLE);
     }
 
     void showElementsUI() {
         sheetBehavior.setHideable(false);
         sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-        fab.setSize(1);
+
+        fab.setVisibility(View.VISIBLE);
         bottomIco.setVisibility(View.VISIBLE);
     }
 
     void fillFragment(Fragment fragment) {
         fragmentManager = getFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
-
+        //   SelectGlassFragment fragment = new SelectGlassFragment();
         fragmentTransaction.replace(R.id.container_frame, fragment);
         fragmentTransaction.commit();
     }

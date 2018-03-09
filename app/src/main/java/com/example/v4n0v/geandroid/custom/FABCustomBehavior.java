@@ -1,4 +1,4 @@
-package com.example.v4n0v.geandroid;
+package com.example.v4n0v.geandroid.custom;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -15,7 +15,7 @@ import android.view.View;
 
 public class FABCustomBehavior extends FloatingActionButton.Behavior{
 
-    String TAG = "FAB_CUSTOM";
+    final private String TAG = "FAB_CUSTOM";
 
     public FABCustomBehavior(Context context, AttributeSet attrs) {
         super(context, attrs);
