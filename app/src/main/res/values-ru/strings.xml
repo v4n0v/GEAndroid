@@ -12,4 +12,5 @@
     <string name="create_order">Создать заказ</string>
     <string name="share">Поделиться</string>
     <string name="select_glass_fragment">Фрагмент выбора стекла</string>
+    <string name="about">О нас</string>
 </resources>
