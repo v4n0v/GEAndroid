@@ -108,6 +108,6 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="about">About us</string>
-    <string name="fab_custom">com.example.v4n0v.geandroid.FABCustomBehavior</string>
+    <string name="fab_custom">com.example.v4n0v.geandroid.custom.FABCustomBehavior</string>
     <string name="loading">loading</string>
 </resources>

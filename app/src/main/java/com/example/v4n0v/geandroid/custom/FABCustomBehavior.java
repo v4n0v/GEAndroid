@@ -9,10 +9,6 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 
-/**
- * Created by v4n0v on 09.03.18.
- */
-
 public class FABCustomBehavior extends FloatingActionButton.Behavior{
 
     final private String TAG = "FAB_CUSTOM";
