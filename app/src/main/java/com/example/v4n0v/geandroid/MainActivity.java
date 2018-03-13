@@ -14,7 +14,6 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -31,32 +30,38 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 import com.example.v4n0v.geandroid.data.Preferences;
-import com.example.v4n0v.geandroid.fragments.MyOrderFragment;
+import com.example.v4n0v.geandroid.fragments.AddToCartFragment;
 import com.example.v4n0v.geandroid.fragments.RegisterFragment;
-import com.example.v4n0v.geandroid.fragments.SelectGlassFragment;
+import com.example.v4n0v.geandroid.fragments.SelectAutoFragment;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     FloatingActionButton fab;
     BottomSheetBehavior<View> sheetBehavior;
-    SelectGlassFragment selectGlassFragment;
+    SelectAutoFragment selectAutoFragment;
     RegisterFragment registerFragment;
     Toolbar toolbar;
     ImageView bottomPicker;
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
-    MyOrderFragment orderFragment;
+    AddToCartFragment orderFragment;
     DrawerLayout drawer;
     SharedPreferences sharedPreferences;
 
     NavigationView navigationView;
     private ImageView bottomIco;
+    private List<Order> orderList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        selectGlassFragment = new SelectGlassFragment();
+        selectAutoFragment = new SelectAutoFragment();
+        orderList = new ArrayList<>();
 
+        selectAutoFragment.setOrderList(orderList);
 
         initUI();
         initTollbar();
@@ -64,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         showElementsUI();
 
         applyColors();
-        fillFragment(selectGlassFragment);
+        fillFragment(selectAutoFragment);
 
         drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -93,8 +98,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+             selectAutoFragment.addItem();
             }
         });
     }
@@ -241,29 +245,32 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-
+        String title= getResources().getString(R.string.app_name)+": ";
+        String addition = null;
         if (id == R.id.nav_new_order) {
-            Toast.makeText(MainActivity.this, "Новый заказ", Toast.LENGTH_SHORT).show();
-
-            fillFragment(selectGlassFragment);
+            addition=getResources().getString(R.string.create_order);
+            Toast.makeText(MainActivity.this, addition, Toast.LENGTH_SHORT).show();
+            fillFragment(selectAutoFragment);
             showElementsUI();
 
         } else if (id == R.id.nav_my_orders) {
             if (orderFragment == null) {
-                orderFragment = new MyOrderFragment();
+                orderFragment = new AddToCartFragment();
             }
+            addition=getResources().getString(R.string.my_orders);
 
             fillFragment(orderFragment);
             hideElementsUI();
-            Toast.makeText(MainActivity.this, "Мои заказы", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, addition, Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_registration) {
 
             if (registerFragment == null) {
                 registerFragment = new RegisterFragment();
             }
-
+            addition=getResources().getString(R.string.registration);
+            Toast.makeText(MainActivity.this, addition, Toast.LENGTH_SHORT).show();
             fillFragment(registerFragment);
-            navigationView.setCheckedItem(R.id.nav_registration);
+
             hideElementsUI();
         } else if (id == R.id.nav_share) {
             Toast.makeText(MainActivity.this, "Поделиться", Toast.LENGTH_SHORT).show();
@@ -273,6 +280,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(intent1);
 
         }
+        title+= addition;
+        toolbar.setTitle(title);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
@@ -297,7 +306,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     void fillFragment(Fragment fragment) {
         fragmentManager = getFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
-        //   SelectGlassFragment fragment = new SelectGlassFragment();
+        //   SelectAutoFragment fragment = new SelectAutoFragment();
         fragmentTransaction.replace(R.id.container_frame, fragment);
         fragmentTransaction.commit();
     }
