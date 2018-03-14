@@ -4,7 +4,7 @@ package com.example.v4n0v.geandroid;
  * Created by v4n0v on 13.03.18.
  */
 
-public class Product {
+public class Product extends Obj{
     public Product(String factoryTitle, String typeTitle, float price, float insertPrice) {
         this.factoryTitle = factoryTitle;
         this.price = price;

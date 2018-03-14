@@ -25,6 +25,7 @@ public class AddToCartFragment extends Fragment implements View.OnClickListener{
     RecyclerCartAdapter adapter;
     private List<Product> elements;
     Button btnCreateOrder;
+    float total;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -38,7 +39,7 @@ public class AddToCartFragment extends Fragment implements View.OnClickListener{
         elements.add(product1);
         elements.add(product2);
         elements.add(product3);
-
+        elements.add(product3);
         initViews(view);
 
         return view;
@@ -48,6 +49,15 @@ public class AddToCartFragment extends Fragment implements View.OnClickListener{
         Toast.makeText(getActivity(), "Оформление заказа", Toast.LENGTH_SHORT).show();
     }
 
+    private void totalCounter(){
+        total=0;
+        for (Product product:elements){
+            if (product.isSelected()){
+                total+=product.getPrice();
+            }
+        }
+
+    }
 
     private void initViews(View view) {
         btnCreateOrder=view.findViewById(R.id.btn_create_order);
@@ -56,7 +66,7 @@ public class AddToCartFragment extends Fragment implements View.OnClickListener{
         recyclerView=view.findViewById(R.id.recycler_cart);
 
         recyclerView.setHasFixedSize(true);
-        int numberOfColumns = 2;
+        int numberOfColumns = 1;
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity().getApplicationContext(), numberOfColumns));
 //        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity().getApplicationContext(),numberOfColumns);
@@ -71,6 +81,8 @@ public class AddToCartFragment extends Fragment implements View.OnClickListener{
 
         recyclerView.setAdapter(adapter);
     }
+
+
 
     @Override
     public void onClick(View view) {
