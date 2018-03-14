@@ -248,7 +248,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         String title= getResources().getString(R.string.app_name)+": ";
         String addition = null;
         if (id == R.id.nav_new_order) {
-            addition=getResources().getString(R.string.create_order);
+            addition=getResources().getString(R.string.orders);
             Toast.makeText(MainActivity.this, addition, Toast.LENGTH_SHORT).show();
             fillFragment(selectAutoFragment);
             showElementsUI();
@@ -310,5 +310,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fragmentTransaction.replace(R.id.container_frame, fragment);
         fragmentTransaction.commit();
     }
+
 
 }

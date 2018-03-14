@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 
 import com.example.v4n0v.geandroid.Order;
 import com.example.v4n0v.geandroid.R;
-import com.example.v4n0v.geandroid.utils.RecyclerOrderAdapter;
+import com.example.v4n0v.geandroid.recycler_adapters.RecyclerOrderAdapter;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -32,7 +32,7 @@ public class SelectAutoFragment extends Fragment {
    private  View view;
     private List<Order> orderList;
     private SimpleDateFormat dateFormat ;
-    private final String template = "dd. MMM HH:mm";
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -45,7 +45,6 @@ public class SelectAutoFragment extends Fragment {
 
     private void initViews() {
 
-        dateFormat = new SimpleDateFormat(template, Locale.getDefault());
 
         initRecyclerView();
 

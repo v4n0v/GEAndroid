@@ -14,7 +14,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="communicate">Communicate</string>
     <string name="my_orders">My Orders</string>
-    <string name="create_order">New Order</string>
+    <string name="orders">New Order</string>
     <string name="share">Share</string>
     <string name="select_glass_fragment">Select Glass Fragment</string>
     <string name="title_activity_scrolling">ScrollingActivity</string>

@@ -1,6 +1,5 @@
-package com.example.v4n0v.geandroid.utils;
+package com.example.v4n0v.geandroid.recycler_adapters;
 
-import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,18 +12,20 @@ import com.example.v4n0v.geandroid.R;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 
 
 public class RecyclerOrderAdapter extends RecyclerView.Adapter<RecyclerOrderAdapter.ViewHolder> {
 
     private List<Order> elements;
 
-    SimpleDateFormat dateFormat = new SimpleDateFormat("dd MM' at ' HH:mm");
-
+    private SimpleDateFormat dateFormat;
+    private final String template = "dd. MMM HH:mm";
 
     public RecyclerOrderAdapter(List<Order> elements) {
         this.elements = elements;
 
+        dateFormat = new SimpleDateFormat(template, Locale.getDefault());
     }
 
     @Override
@@ -72,6 +73,7 @@ public class RecyclerOrderAdapter extends RecyclerView.Adapter<RecyclerOrderAdap
 
         @Override
         public boolean onLongClick(View view) {
+
             Toast.makeText(view.getContext(), itemHeader.getText()+" удален", Toast.LENGTH_SHORT).show();
             elements.remove(getLayoutPosition());
             notifyDataSetChanged();

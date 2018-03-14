@@ -8,9 +8,10 @@
     <string name="bottom_header">Выбрать авто</string>
     <string name="bottom_body_header">Выбирите авто из списка</string>
     <string name="bottom_button_title">Готово</string>
-    <string name="my_orders">Мои заказы</string>
-    <string name="create_order">Создать заказ</string>
+    <string name="my_orders">Выбор товара</string>
+    <string name="orders">Заказы</string>
     <string name="share">Поделиться</string>
     <string name="select_glass_fragment">Фрагмент выбора стекла</string>
     <string name="about">О компании</string>
+    <string name="create_order">Оформить заказ</string>
 </resources>
