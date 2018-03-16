@@ -255,14 +255,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             showElementsUI();
 
         } else if (id == R.id.nav_my_orders) {
-            if (orderFragment == null) {
-                orderFragment = new AddToCartFragment();
-            }
-            addition=getResources().getString(R.string.my_orders);
+//            if (orderFragment == null) {
+//                orderFragment = new AddToCartFragment();
+//            }
+//            addition=getResources().getString(R.string.my_orders);
+//            fillFragment(orderFragment);
+//            hideElementsUI();
+//            Toast.makeText(MainActivity.this, addition, Toast.LENGTH_SHORT).show();
 
-            fillFragment(orderFragment);
-            hideElementsUI();
-            Toast.makeText(MainActivity.this, addition, Toast.LENGTH_SHORT).show();
+            Intent inten = new Intent(MainActivity.this, ProductsActivity.class);
+            startActivity(inten);
+
         } else if (id == R.id.nav_registration) {
 
             if (registerFragment == null) {

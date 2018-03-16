@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/colorWhite"
+    android:padding="@dimen/std_margin"
+    android:layout_marginBottom="@dimen/lil_margin"
+    >
+    <!--можно лого производителя вставить-->
+
+
+    <TextView
+        android:id="@+id/item_cart_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size_header"
+        android:textStyle="bold"
+        tools:text="Замена" />
+
+    <TextView
+        android:id="@+id/item_cart_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_below="@+id/item_cart_title"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        tools:text="2000p" />
+    <ImageView
+        android:layout_marginTop="@dimen/std_margin"
+        android:id="@+id/item_cart_added"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_below="@id/item_serv_time"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"/>
+
+</RelativeLayout>

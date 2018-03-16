@@ -26,7 +26,7 @@ public class RegisterFragment extends Fragment implements View.OnTouchListener{
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.register_fragment, container, false);
+        View view = inflater.inflate(R.layout.fragment_register, container, false);
         initViews(view);
 
         return view;

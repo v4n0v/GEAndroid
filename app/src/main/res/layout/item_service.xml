@@ -7,7 +7,7 @@
     android:background="@color/colorWhite"
     android:padding="@dimen/std_margin"
     android:layout_marginBottom="@dimen/lil_margin"
- >
+    >
     <!--можно лого производителя вставить-->
 
 
@@ -17,51 +17,42 @@
         android:layout_height="wrap_content"
         android:textSize="30sp"
         android:textStyle="bold"
-        tools:text="лобовое" />
-
+        tools:text="Замена" />
 
 
     <TextView
-        android:id="@+id/item_cart_factory"
+        android:id="@+id/item_serv_time_title"
+        android:text="Время"
         android:layout_below="@id/item_type_title"
-        tools:text="СуперЗавод"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        />
-
-
-    <TextView
-        android:id="@+id/item_cart_insert_price_title"
-        android:text="Установка"
-        android:layout_below="@id/item_cart_factory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
     <TextView
-        android:id="@+id/item_cart_insert_price"
-        tools:text="2500"
+        android:id="@+id/item_serv_time"
+        tools:text="10мин"
         android:layout_below="@id/item_cart_factory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/item_serv_time_title"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"/>
 
     <TextView
-        android:id="@+id/item_cart_price"
+        android:id="@+id/item_serv_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_below="@+id/item_cart_insert_price_title"
+        android:layout_below="@+id/item_serv_time_title"
         android:textSize="26sp"
         android:textStyle="bold"
-        tools:text="2000" />
+        tools:text="2000p" />
     <ImageView
         android:layout_marginTop="@dimen/std_margin"
         android:id="@+id/item_cart_added"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_below="@id/item_cart_insert_price"
+        android:layout_below="@id/item_serv_time"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"/>
 

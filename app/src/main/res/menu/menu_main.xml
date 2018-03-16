@@ -2,10 +2,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.v4n0v.geandroid.MainActivity">
+
+
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_apply"
         android:orderInCategory="100"
         android:title="Настройки"
         android:onClick="showRegistrationActivity"
         app:showAsAction="never" />
+
+
 </menu>

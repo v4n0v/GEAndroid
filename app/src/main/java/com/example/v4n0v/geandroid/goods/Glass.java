@@ -1,17 +1,35 @@
-package com.example.v4n0v.geandroid;
+package com.example.v4n0v.geandroid.goods;
 
 /**
  * Created by v4n0v on 13.03.18.
  */
 
-public class Product extends Obj{
-    public Product(String factoryTitle, String typeTitle, float price, float insertPrice) {
-        this.factoryTitle = factoryTitle;
+public class Glass extends Product {
+
+    private String factoryTitle;
+    private float insertPrice;
+    private String typeTitle;
+
+    public Glass(int id, String title, String typeTitle, float price, float insertPrice) {
+        super(id, title+" "+typeTitle, price);
+        this.id=id;
+        this.factoryTitle = title;
         this.price = price;
         this.insertPrice = insertPrice;
         this.typeTitle=typeTitle;
         this.isSelected = false;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    int id;
+
 
     public String getFactoryTitle() {
         return factoryTitle;
@@ -45,10 +63,7 @@ public class Product extends Obj{
         isSelected = selected;
     }
 
-    private String factoryTitle;
-    private float price;
-    private float insertPrice;
-    private boolean isSelected;
+
 
     public String getTypeTitle() {
         return typeTitle;
@@ -58,5 +73,4 @@ public class Product extends Obj{
         this.typeTitle = typeTitle;
     }
 
-    private String typeTitle;
 }

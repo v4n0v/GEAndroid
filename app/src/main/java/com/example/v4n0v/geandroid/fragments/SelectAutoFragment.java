@@ -16,7 +16,6 @@ import com.example.v4n0v.geandroid.recycler_adapters.RecyclerOrderAdapter;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
-import java.util.Locale;
 
 public class SelectAutoFragment extends Fragment {
     private RecyclerView recyclerView;
@@ -36,7 +35,7 @@ public class SelectAutoFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.select_auto_fragment, container, false);
+        view = inflater.inflate(R.layout.fragment_orders, container, false);
         initViews();
         addItem();
         return view;
@@ -56,7 +55,7 @@ public class SelectAutoFragment extends Fragment {
     }
 
     public void  initRecyclerView(){
-        recyclerView=view.findViewById(R.id.recycler_order);
+        recyclerView=view.findViewById(R.id.recycler_cart);
 
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity().getApplicationContext());

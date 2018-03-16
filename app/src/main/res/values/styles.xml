@@ -33,8 +33,17 @@
     <style name="BlackButtonStyle">
         <item name="android:background">@drawable/button_background</item>
         <item name="android:textColor">@color/colorWhite</item>
-        <item name="android:layout_margin">20dp</item>
+
     </style>
 
+    <style name="AppTheme.NoActionBar.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.NoActionBar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Header">
+        <item name="android:textSize">@dimen/text_size_header</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 
 </resources>
+<!--<item name="android:layout_margin">20dp</item>-->

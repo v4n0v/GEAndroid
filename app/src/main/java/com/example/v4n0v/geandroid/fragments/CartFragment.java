@@ -3,6 +3,7 @@ package com.example.v4n0v.geandroid.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,20 +13,18 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.v4n0v.geandroid.goods.Glass;
 import com.example.v4n0v.geandroid.R;
 import com.example.v4n0v.geandroid.custom.SpaceItemDecorator;
 import com.example.v4n0v.geandroid.goods.Product;
-import com.example.v4n0v.geandroid.recycler_adapters.RecyclerProductsAdaper;
+import com.example.v4n0v.geandroid.recycler_adapters.RecyclerCartAdapter;
 
 import java.util.List;
 
+public class CartFragment extends Fragment
+        implements View.OnClickListener{
 
-public class AddToCartFragment extends Fragment{
-//        implements View.OnClickListener{
-
-    public static AddToCartFragment newInstance(Bundle bundle) {
-        AddToCartFragment currentFragment = new AddToCartFragment();
+    public static CartFragment newInstance(Bundle bundle) {
+        CartFragment currentFragment = new CartFragment();
         Bundle args = new Bundle();
         args.putBundle("gettedArgs", bundle);
         currentFragment.setArguments(args);
@@ -33,28 +32,24 @@ public class AddToCartFragment extends Fragment{
     }
 
 
-    public void setElements(List<Glass> elements, List<Product> selectedElements) {
+    private RecyclerView recyclerView;
+//    RecyclerCartAdapter adapter;
+    RecyclerCartAdapter adapter;
+    public void setElements(List<Product> elements) {
         this.elements = elements;
-        this.selectedElements = selectedElements;
     }
 
-    private RecyclerView recyclerView;
-    RecyclerProductsAdaper adapter;
-    private List<Glass> elements;
-    private List<Product> selectedElements;
-
+    private List<Product> elements;
+    Button btnCreateOrder;
     float total;
-
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_products, container, false);
-
-
-
+        View view = inflater.inflate(R.layout.fragment_cart, container, false);
 
         initViews(view);
+
+
 
         return view;
     }
@@ -65,15 +60,17 @@ public class AddToCartFragment extends Fragment{
 
     private void totalCounter(){
         total=0;
-        for (Glass glass :elements){
-            if (glass.isSelected()){
-                total+= glass.getPrice();
+        for (Product product :elements){
+            if (product.isSelected()){
+                total+= product.getPrice();
             }
         }
 
     }
 
     private void initViews(View view) {
+//        btnCreateOrder=view.findViewById(R.id.btn_create_order);
+//         btnCreateOrder.setOnClickListener(this);
 
         recyclerView=view.findViewById(R.id.recycler_cart);
 
@@ -89,9 +86,27 @@ public class AddToCartFragment extends Fragment{
         recyclerView.setLayoutManager(layoutManager);
 
 
-        adapter = new RecyclerProductsAdaper(elements, selectedElements);
+        adapter = RecyclerCartAdapter.getInstance();
+        adapter.setElements(elements);
 
         recyclerView.setAdapter(adapter);
     }
+
+    public void refresh() {
+        adapter.notifyDataSetChanged();
+    }
+
+//
+//
+    @Override
+    public void onClick(View view) {
+
+        if (elements.size()>0) {
+           createOrder();
+        } else {
+            Toast.makeText(getActivity(), "Выбирите товар", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
 }

@@ -110,4 +110,11 @@
     <string name="about">About us</string>
     <string name="fab_custom">com.example.v4n0v.geandroid.custom.FABCustomBehavior</string>
     <string name="loading">loading</string>
+    <string name="title_activity_products">ProductsActivity</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_bottom">BottomActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_temp">TempActivity</string>
 </resources>
