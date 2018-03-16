@@ -32,6 +32,7 @@
             android:layout_height="60dp"
             android:src="@drawable/ic_arrow_drop_up"
             app:layout_anchor="@+id/bottom_sheet"
+            app:layout_behavior="com.example.v4n0v.geandroid.custom.BottomCustom"
             app:layout_anchorGravity="top|center" />
 
         <android.support.design.widget.FloatingActionButton
@@ -42,6 +43,7 @@
             android:layout_margin="@dimen/fab_margin"
             android:src="@drawable/ic_add_fab"
             app:layout_anchor="@+id/bottom_sheet"
+            app:layout_behavior="com.example.v4n0v.geandroid.custom.BottomCustom"
             app:layout_anchorGravity="top|end" />
     </android.support.design.widget.CoordinatorLayout>
 

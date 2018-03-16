@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -120,6 +120,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onStateChanged(@NonNull View bottomSheet, int newState) {
                 // этот код скрывает кнопку сразу же
 // и отображает после того как нижний экран полностью свернется
+
                 if (BottomSheetBehavior.STATE_DRAGGING == newState) {
                     fab.animate().scaleX(0).scaleY(0).setDuration(300).start();
                 } else if (BottomSheetBehavior.STATE_COLLAPSED == newState) {

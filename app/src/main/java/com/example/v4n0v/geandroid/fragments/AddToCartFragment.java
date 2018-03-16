@@ -39,7 +39,7 @@ public class AddToCartFragment extends Fragment implements View.OnClickListener{
         elements.add(product1);
         elements.add(product2);
         elements.add(product3);
-        elements.add(product3);
+
         initViews(view);
 
         return view;

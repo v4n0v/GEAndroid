@@ -7,14 +7,16 @@
     android:layout_marginTop="?attr/actionBarSize"
     android:background="@color/divider"
     android:orientation="vertical"
-    android:padding="@dimen/lil_margin">
+    android:paddingLeft="@dimen/lil_margin"
+    android:paddingRight="@dimen/lil_margin"
+    >
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_order"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_order"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
 
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 </LinearLayout>
 
