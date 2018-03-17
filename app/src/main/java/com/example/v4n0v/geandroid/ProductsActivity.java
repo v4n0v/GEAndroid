@@ -1,8 +1,12 @@
 package com.example.v4n0v.geandroid;
 
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -12,7 +16,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
 import com.example.v4n0v.geandroid.custom.CustomFragmentPA;
@@ -26,7 +29,7 @@ import com.example.v4n0v.geandroid.goods.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductsActivity extends AppCompatActivity {
+public class ProductsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     final String TAG = "ProductsActivity";
 
@@ -53,26 +56,42 @@ public class ProductsActivity extends AppCompatActivity {
     List<Glass> elements;
     List<Service> serviceElements;
     List<Product> selectedElements;
-
+    Toolbar toolbar;
     FragmentTemp fragmentTemp;
 
+DrawerLayout drawer;
+
+    NavigationView navigationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_products);
-
+        initTollbar();
+        String addition = getResources().getString(R.string.my_orders);
+       // String title = getResources().getString(R.string.app_name) + ": ";
+        toolbar.setTitle(addition);
         elements = new ArrayList<>();
         serviceElements=new ArrayList<>();
         selectedElements = new ArrayList<>();
+
         Glass glass1 = new Glass(100, "Спектргласс", "Лобовое", 2000, 1500);
         Glass glass2 = new Glass(101, "XYG", "Лобовое", 1000, 1250);
         Glass glass3 = new Glass(102, "Спектргласс", "Заднее", 2500, 1000);
+        Glass glass4 = new Glass(103, "Спектргласс", "Боковое", 2550, 1000);
+        Glass glass5 = new Glass(105, "Спектргласс", "Заднее", 3500, 1000);
+        Glass glass6 = new Glass(106, "XYG", "Заднее", 3500, 1000);
+
         elements.add(glass1);
         elements.add(glass2);
         elements.add(glass3);
+        elements.add(glass4);
+        elements.add(glass5);
+        elements.add(glass6);
+
         Service service1 = new Service(10, "Засверлить скол", 1000, 30);
         Service service2 = new Service(11, "Протереть пыль", 5000, 10);
         Service service3 = new Service(12, "Разбить лобарь", 1000, 2);
+
         serviceElements.add(service1);
         serviceElements.add(service2);
         serviceElements.add(service3);
@@ -125,8 +144,20 @@ public class ProductsActivity extends AppCompatActivity {
 //            }
 //        });
 
-    }
+        drawer = findViewById(R.id.drawer_layout_products);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
 
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+    }
+    private void initTollbar() {
+     //   bottomIco = findViewById(R.id.bottom_header_ico);
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+    }
     private void initFragments() {
 
         fragmentTemp = FragmentTemp.newInstance(null);
@@ -166,5 +197,39 @@ public class ProductsActivity extends AppCompatActivity {
         Toast.makeText(this, "Оформление заказа", Toast.LENGTH_SHORT).show();
         else
             Toast.makeText(this, "Выбирите товар", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        String title= getResources().getString(R.string.app_name)+": ";
+        String addition = null;
+        if (id == R.id.nav_new_order) {
+            Intent intent1 = new Intent(ProductsActivity.this, MainActivity.class);
+            intent1.putExtra("nav", "new_order");
+            startActivity(intent1);
+
+        } else if (id == R.id.nav_my_orders) {
+
+
+        } else if (id == R.id.nav_registration) {
+            Intent intent1 = new Intent(ProductsActivity.this, MainActivity.class);
+            intent1.putExtra("nav", "reg");
+            startActivity(intent1);
+
+
+        } else if (id == R.id.nav_share) {
+            Toast.makeText(ProductsActivity.this, "Поделиться", Toast.LENGTH_SHORT).show();
+
+        } else if (id == R.id.nav_about) {
+            Intent intent1 = new Intent(ProductsActivity.this, AboutActivity.class);
+
+            startActivity(intent1);
+
+        }
+       // title+= addition;
+        toolbar.setTitle(addition);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 }

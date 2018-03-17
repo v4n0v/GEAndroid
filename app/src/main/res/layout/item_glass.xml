@@ -15,6 +15,7 @@
         android:id="@+id/item_type_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/colorAccent"
         android:textSize="30sp"
         android:textStyle="bold"
         tools:text="лобовое" />

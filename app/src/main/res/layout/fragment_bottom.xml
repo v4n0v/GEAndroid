@@ -9,7 +9,8 @@
     <FrameLayout
         android:id="@+id/in_temp_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        >
     </FrameLayout>
 
     <android.support.design.widget.BottomNavigationView
@@ -21,6 +22,7 @@
         android:background="@color/colorDarkGray"
         app:itemTextColor="@color/colorWhite"
         app:itemIconTint="@drawable/selector_bottom_menu"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

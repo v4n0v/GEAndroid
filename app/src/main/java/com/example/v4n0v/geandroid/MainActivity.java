@@ -61,6 +61,34 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         selectAutoFragment = new SelectAutoFragment();
         orderList = new ArrayList<>();
 
+
+        Intent intent = getIntent();
+        if (intent != null) {
+            String target = intent.getStringExtra("nav");
+            if (target != null) {
+                switch (target) {
+                    case "new_order":
+                        fillFragment(selectAutoFragment);
+                        break;
+                    case "reg":
+                        if (registerFragment == null) {
+                            registerFragment = new RegisterFragment();
+                        }
+
+                        fillFragment(registerFragment);
+                        break;
+                    default:
+                        break;
+                }
+
+            }else {
+                fillFragment(selectAutoFragment);
+            }
+
+        } else {
+            fillFragment(selectAutoFragment);
+        }
+
         selectAutoFragment.setOrderList(orderList);
 
         initUI();
@@ -69,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         showElementsUI();
 
         applyColors();
-        fillFragment(selectAutoFragment);
+       // fillFragment(selectAutoFragment);
 
         drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -98,7 +126,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-             selectAutoFragment.addItem();
+                selectAutoFragment.addItem();
             }
         });
     }
@@ -246,10 +274,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-        String title= getResources().getString(R.string.app_name)+": ";
+        String title = getResources().getString(R.string.app_name) + ": ";
         String addition = null;
         if (id == R.id.nav_new_order) {
-            addition=getResources().getString(R.string.orders);
+            addition = getResources().getString(R.string.orders);
             Toast.makeText(MainActivity.this, addition, Toast.LENGTH_SHORT).show();
             fillFragment(selectAutoFragment);
             showElementsUI();
@@ -258,7 +286,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //            if (orderFragment == null) {
 //                orderFragment = new AddToCartFragment();
 //            }
-//            addition=getResources().getString(R.string.my_orders);
+ //           addition=getResources().getString(R.string.my_orders);
 //            fillFragment(orderFragment);
 //            hideElementsUI();
 //            Toast.makeText(MainActivity.this, addition, Toast.LENGTH_SHORT).show();
@@ -271,7 +299,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             if (registerFragment == null) {
                 registerFragment = new RegisterFragment();
             }
-            addition=getResources().getString(R.string.registration);
+            addition = getResources().getString(R.string.registration);
             Toast.makeText(MainActivity.this, addition, Toast.LENGTH_SHORT).show();
             fillFragment(registerFragment);
 
@@ -280,11 +308,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Toast.makeText(MainActivity.this, "Поделиться", Toast.LENGTH_SHORT).show();
 
         } else if (id == R.id.nav_about) {
-            Intent intent1 = new Intent(MainActivity.this, ScrollingActivity.class);
+            Intent intent1 = new Intent(MainActivity.this, AboutActivity.class);
             startActivity(intent1);
 
         }
-        title+= addition;
+        title += addition;
         toolbar.setTitle(title);
         drawer.closeDrawer(GravityCompat.START);
         return true;

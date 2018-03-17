@@ -8,13 +8,13 @@
     tools:context="com.example.v4n0v.geandroid.BottomActivity">
 
 
-    <FrameLayout
-        android:id="@+id/frame_bottom_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        <FrameLayout
+            android:id="@+id/frame_bottom_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
 
-    </FrameLayout>
+        </FrameLayout>
 
 
 
@@ -24,6 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="0dp"
         android:layout_marginStart="0dp"
+        app:layout_behavior="com.example.v4n0v.geandroid.custom.BottomCustom"
         android:background="?android:attr/windowBackground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
