@@ -21,6 +21,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Menu;
@@ -54,14 +55,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ImageView bottomIco;
     private List<Order> orderList;
 
+
+    String TAG = "MyTag";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         selectAutoFragment = new SelectAutoFragment();
         orderList = new ArrayList<>();
+        initUI();
+        initTollbar();
+        initFAB();
+        showElementsUI();
 
-
+        toolbar.setTitle( getResources().getString(R.string.orders));
         Intent intent = getIntent();
         if (intent != null) {
             String target = intent.getStringExtra("nav");
@@ -74,27 +81,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         if (registerFragment == null) {
                             registerFragment = new RegisterFragment();
                         }
-
+                        toolbar.setTitle( getResources().getString(R.string.registration));
                         fillFragment(registerFragment);
+                        hideElementsUI();
                         break;
                     default:
                         break;
                 }
 
             }else {
+
+                Log.d(TAG, "target = null");
                 fillFragment(selectAutoFragment);
             }
 
         } else {
+            Log.d(TAG, "intent = null");
             fillFragment(selectAutoFragment);
         }
 
         selectAutoFragment.setOrderList(orderList);
 
-        initUI();
-        initTollbar();
-        initFAB();
-        showElementsUI();
+
 
         applyColors();
        // fillFragment(selectAutoFragment);
@@ -109,6 +117,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
 
     }
+
 
 
     @Override
@@ -312,8 +321,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(intent1);
 
         }
-        title += addition;
-        toolbar.setTitle(title);
+    //    title += addition;
+        toolbar.setTitle(addition);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
