@@ -11,7 +11,7 @@
         android:id="@+id/app_bar_scroll"
         android:layout_width="match_parent"
         android:layout_height="@dimen/app_bar_height"
-        android:fitsSystemWindows="true"
+        style="?attr/appBarLayoutStyle"
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.design.widget.CollapsingToolbarLayout

@@ -60,7 +60,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+       // setTheme (R.style.ThemeStandart_Green);
+        applyTheme();
+        init();
+        applyColors();
+    }
+
+    private void init(){ setContentView(R.layout.activity_main);
+
         selectAutoFragment = new SelectAutoFragment();
         orderList = new ArrayList<>();
         initUI();
@@ -104,8 +111,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
 
-        applyColors();
-       // fillFragment(selectAutoFragment);
+
+        // fillFragment(selectAutoFragment);
 
         drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -117,8 +124,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
 
     }
-
-
 
     @Override
     public void onBackPressed() {
@@ -224,6 +229,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     Toast.makeText(MainActivity.this, "Теменая тема", Toast.LENGTH_SHORT).show();
                     ed.putBoolean(Preferences.NAV_THEME_DARK, true);
 
+
                 } else {
                     Toast.makeText(MainActivity.this, "Светлая тема", Toast.LENGTH_SHORT).show();
                     int colorIntText = getResources().getColor(R.color.colorWhite);
@@ -232,6 +238,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 }
 
                 ed.apply();
+                applyTheme();
+                init();
                 applyColors();
             }
         });
@@ -253,11 +261,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             colorIntIco = getResources().getColor(R.color.colorWhite);
             colorBG = getResources().getColor(R.color.colorDarkGray);
             colorGroupText = getResources().getColor(R.color.colorGrayLight);
+
         } else {
             colorIntText = getResources().getColor(R.color.colorDarkGray);
             colorGroupText = getResources().getColor(R.color.colorGrayDark);
             colorIntIco = getResources().getColor(R.color.colorDarkGray);
             colorBG = getResources().getColor(R.color.colorWhite);
+
         }
 
         MenuItem menuItem = navigationView.getMenu().getItem(4);
@@ -269,10 +279,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setItemTextColor(csl);
         navigationView.setItemIconTintList(csl);
         navigationView.setBackgroundColor(colorBG);
-
+    //    init();
 
     }
-
+    void applyTheme() {
+        sharedPreferences = getSharedPreferences(Preferences.APP_PREFERENCES, Context.MODE_PRIVATE);
+        boolean isDarkTheme = sharedPreferences.getBoolean(Preferences.NAV_THEME_DARK, false);
+        if (isDarkTheme) {
+            setTheme (R.style.ThemeStandart);
+        } else {
+            setTheme (R.style.ThemeStandart_Green);
+        }
+    }
 
     public void saveCar(View view) {
         Toast.makeText(MainActivity.this, "Сохранение данных об авто", Toast.LENGTH_SHORT).show();

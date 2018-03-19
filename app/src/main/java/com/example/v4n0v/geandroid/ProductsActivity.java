@@ -1,6 +1,8 @@
 package com.example.v4n0v.geandroid;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -19,6 +21,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.v4n0v.geandroid.custom.CustomFragmentPA;
+import com.example.v4n0v.geandroid.data.Preferences;
 import com.example.v4n0v.geandroid.fragments.AddToCartFragment;
 import com.example.v4n0v.geandroid.fragments.CartFragment;
 import com.example.v4n0v.geandroid.fragments.FragmentTemp;
@@ -58,13 +61,14 @@ public class ProductsActivity extends AppCompatActivity implements NavigationVie
     List<Product> selectedElements;
     Toolbar toolbar;
     FragmentTemp fragmentTemp;
-
+    SharedPreferences sharedPreferences;
 DrawerLayout drawer;
 
     NavigationView navigationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        applyTheme();
         setContentView(R.layout.activity_products);
         initTollbar();
         String addition = getResources().getString(R.string.my_orders);
@@ -169,7 +173,15 @@ DrawerLayout drawer;
         customFragmentPA.addFragment(fragmentTemp, "Товары");
         customFragmentPA.addFragment(cartFragment, "Корзина");
     }
-
+    void applyTheme() {
+        sharedPreferences = getSharedPreferences(Preferences.APP_PREFERENCES, Context.MODE_PRIVATE);
+        boolean isDarkTheme = sharedPreferences.getBoolean(Preferences.NAV_THEME_DARK, false);
+        if (isDarkTheme) {
+            setTheme (R.style.ThemeStandart);
+        } else {
+            setTheme (R.style.ThemeStandart_Green);
+        }
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

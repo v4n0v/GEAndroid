@@ -16,6 +16,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="30sp"
+
         android:textStyle="bold"
         tools:text="Замена" />
 
@@ -23,6 +24,7 @@
     <TextView
         android:id="@+id/item_serv_time_title"
         android:text="Время"
+
         android:layout_below="@id/item_type_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
@@ -30,6 +32,7 @@
     <TextView
         android:id="@+id/item_serv_time"
         tools:text="10мин"
+
         android:layout_below="@id/item_cart_factory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

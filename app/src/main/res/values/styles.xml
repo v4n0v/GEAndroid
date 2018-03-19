@@ -9,7 +9,8 @@
     </style>
 
     <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="windowActionBar">true</item>
         <item name="windowNoTitle">true</item>
     </style>
 
@@ -43,6 +44,71 @@
     <style name="Header">
         <item name="android:textSize">@dimen/text_size_header</item>
         <item name="android:textStyle">bold</item>
+    </style>
+
+
+
+    <style name="standart_AppBarLayoutStyle" parent="@style/Widget.Design.AppBarLayout">
+    </style>
+
+    <style name="standart_AppBarLayoutStyle.Black">
+        <item name="android:background">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="standart_AppBarLayoutStyle.Green">
+        <item name="android:background">@color/colorPrimaryDarkGreen</item>
+    </style>
+
+    <style name="tabLayoutStyle" parent="@style/Widget.Design.TabLayout">
+    </style>
+
+    <style name="tabLayoutStyle.Black">
+        <item name="android:background">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="tabLayoutStyle.Green">
+        <item name="android:background">@color/colorPrimaryDarkGreen</item>
+    </style>
+
+
+    <style name="fabStyle" parent="@style/Widget.AppCompat.Button">
+
+    </style>
+    <style name="fabStyle.Black">
+        <item name="backgroundTint">@color/colorAccent</item>
+    </style>
+    <style name="fabStyle.Green">
+        <item name="backgroundTint">@color/colorAccentGreen</item>
+    </style>
+
+
+    <style name="fillStyle" parent="TextAppearance.AppCompat.Small">
+
+    </style>
+    <style name="fillStyle.Black">
+        <item name="android:background">@color/colorPrimaryDark</item>
+    </style>
+    <style name="fillStyle.Green">
+        <item name="android:background">@color/colorPrimaryDarkGreen</item>
+    </style>
+
+    <style name="iconStyle" parent="TextAppearance.AppCompat.Small">
+
+    </style>
+    <style name="iconStyle.Black">
+        <item name="android:src">@drawable/ic_arrow_drop_up</item>
+    </style>
+    <style name="iconStyle.Green">
+        <item name="android:src">@drawable/ic_arrow_drop_up_green</item>
+    </style>
+
+    <style name="canvasStyle" parent="Theme.AppCompat">
+    </style>
+    <style name="canvasStyle.Black">
+        <item name="android:background">@color/colorGrayDark</item>
+    </style>
+    <style name="canvasStyle.Green">
+        <item name="android:background">@color/colorGrayLight</item>
     </style>
 
 </resources>

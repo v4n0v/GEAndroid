@@ -30,7 +30,7 @@
             android:id="@+id/bottom_header_ico"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            app:srcCompat="@drawable/ic_arrow_drop_up"
+            style="?attr/iconStyle"
             app:layout_anchor="@+id/bottom_sheet"
             app:layout_behavior="com.example.v4n0v.geandroid.custom.BottomCustom"
             app:layout_anchorGravity="top|center" />
@@ -42,6 +42,7 @@
             android:background="@color/colorAccent"
             android:layout_margin="@dimen/fab_margin"
             app:srcCompat="@drawable/ic_add_fab"
+            style="?attr/fabStyle"
             app:layout_anchor="@+id/bottom_sheet"
             app:layout_behavior="com.example.v4n0v.geandroid.custom.BottomCustom"
             app:layout_anchorGravity="top|end" />

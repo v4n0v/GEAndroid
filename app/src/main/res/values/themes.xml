@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--// standart *********************************************************-->
+    <style name="ThemeStandart" parent="AppTheme.NoActionBar">
+        <item name="appBarLayoutStyle">@style/standart_AppBarLayoutStyle.Black</item>
+        <item name="fabStyle">@style/fabStyle.Black</item>
+        <item name="fillStyle">@style/fillStyle.Black</item>
+        <item name="iconStyle">@style/iconStyle.Black</item>
+        <item name="canvasStyle">@style/canvasStyle.Black</item>
+        <item name="tabStyle">@style/tabLayoutStyle.Black</item>
+
+    </style>
+    <!--// green ***********************************************************-->
+    <style name="ThemeStandart.Green">
+        <item name="appBarLayoutStyle">@style/standart_AppBarLayoutStyle.Green</item>
+        <item name="fabStyle">@style/fabStyle.Green</item>
+        <item name="fillStyle">@style/fillStyle.Green</item>
+        <item name="iconStyle">@style/iconStyle.Green</item>
+        <item name="canvasStyle">@style/canvasStyle.Green</item>
+        <item name="tabStyle">@style/tabLayoutStyle.Green</item>
+
+    </style>
+    <!--// red **************************************************************-->
+    <!--<style name="ThemeStandart.Red">-->
+        <!--<item name="appBarLayoutStyle">@style/standart_AppBarLayoutStyle.Red</item>-->
+    <!--</style>-->
+
+</resources>
