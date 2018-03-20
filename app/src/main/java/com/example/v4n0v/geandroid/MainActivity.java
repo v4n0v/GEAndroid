@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetBehavior;
@@ -26,6 +27,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.Toast;
@@ -287,11 +290,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     void applyTheme() {
         sharedPreferences = getSharedPreferences(Preferences.APP_PREFERENCES, Context.MODE_PRIVATE);
         boolean isDarkTheme = sharedPreferences.getBoolean(Preferences.NAV_THEME_DARK, false);
+        int color;
         if (isDarkTheme) {
             setTheme (R.style.ThemeStandart);
+            color=R.color.colorPrimaryDark;
         } else {
             setTheme (R.style.ThemeStandart_Green);
+            color=R.color.colorPrimaryDarkGreen;
         }
+
+        if (Build.VERSION.SDK_INT >= 21) {
+            Window window = getWindow();
+            // clear FLAG_TRANSLUCENT_STATUS flag:
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            // finally change the color
+            window.setStatusBarColor(getResources().getColor(color));
+        }
+
+
+
+
     }
 
     public void saveCar(View view) {

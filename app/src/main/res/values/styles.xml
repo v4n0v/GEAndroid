@@ -52,11 +52,11 @@
     </style>
 
     <style name="standart_AppBarLayoutStyle.Black">
-        <item name="android:background">@color/colorPrimaryDark</item>
+        <item name="android:background">@color/colorPrimary</item>
     </style>
 
     <style name="standart_AppBarLayoutStyle.Green">
-        <item name="android:background">@color/colorPrimaryDarkGreen</item>
+        <item name="android:background">@color/colorPrimaryGreen</item>
     </style>
 
     <style name="tabLayoutStyle" parent="@style/Widget.Design.TabLayout">
@@ -67,7 +67,7 @@
     </style>
 
     <style name="tabLayoutStyle.Green">
-        <item name="android:background">@color/colorPrimaryDarkGreen</item>
+        <item name="android:background">@color/colorPrimaryGreen</item>
     </style>
 
 
