@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
  >
 
 
@@ -10,21 +11,24 @@
         android:id="@+id/in_temp_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/navigation_inner"
+  >
 
-        app:layout_constraintBottom_toTopOf="@+id/navigation_inner"></FrameLayout>
+    </FrameLayout>
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation_inner"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="0dp"
-        android:layout_marginStart="0dp"
+
         android:background="@color/colorDarkGray"
         app:itemTextColor="@color/colorWhite"
         app:itemIconTint="@drawable/selector_bottom_menu"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+
         app:menu="@menu/navigation" />
 
 

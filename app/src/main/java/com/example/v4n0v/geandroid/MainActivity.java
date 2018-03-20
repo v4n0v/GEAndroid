@@ -238,9 +238,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 }
 
                 ed.apply();
-                applyTheme();
-                init();
-                applyColors();
+                Intent reloadIntent = new Intent(MainActivity.this, MainActivity.class);
+                startActivity(reloadIntent);
+//                applyTheme();
+//                init();
+//                applyColors();
             }
         });
         builder.show();

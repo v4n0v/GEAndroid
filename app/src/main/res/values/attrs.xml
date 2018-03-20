@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="ThemeStandart" >
+    <declare-styleable name="ThemeStandart">
         <attr name="appBarLayoutStyle" format="reference" />
         <attr name="fabStyle" format="reference" />
         <attr name="fillStyle" format="reference" />
         <attr name="iconStyle" format="reference" />
         <attr name="canvasStyle" format="reference" />
         <attr name="tabStyle" format="reference" />
-
     </declare-styleable>
+
+    <declare-styleable name="TextViewPlus">
+        <attr name="customFont" format="string"/>
+    </declare-styleable>
+
 </resources>

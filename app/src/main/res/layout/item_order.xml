@@ -2,6 +2,8 @@
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:foo="http://schemas.android.com/apk/res-auto"
+
     android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -24,7 +26,8 @@
         android:layout_height="wrap_content"
         android:padding="@dimen/std_margin">
 
-        <TextView
+        <com.example.v4n0v.geandroid.custom.TextViewPlus
+            foo:customFont="roboto-bold.ttf"
             android:id="@+id/order_header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -35,18 +38,21 @@
             app:layout_constraintStart_toStartOf="parent"
             tools:text="Заказ N" />
 
-        <TextView
+        <com.example.v4n0v.geandroid.custom.TextViewPlus
+            foo:customFont="roboto.ttf"
             android:id="@+id/order_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:layout_below="@+id/order_header"
+
+               android:layout_below="@+id/order_header"
             android:textSize="18sp"
             android:textStyle="bold"
 
             tools:text="10 марта 2018" />
 
-        <TextView
+        <com.example.v4n0v.geandroid.custom.TextViewPlus
+            foo:customFont="roboto.ttf"
             android:id="@+id/order_summ"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
