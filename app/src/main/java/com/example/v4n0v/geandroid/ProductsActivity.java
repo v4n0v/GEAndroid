@@ -119,9 +119,7 @@ DrawerLayout drawer;
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 Log.e(TAG, "onTabSelected: " + tab.getText());
-                //if (tab.getText().equals("Корзина")){
-                //cartFragment.refresh();
-                //}
+
 
             }
 

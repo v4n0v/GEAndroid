@@ -32,8 +32,7 @@ public class CartFragment extends Fragment
     }
 
 
-    private RecyclerView recyclerView;
-//    RecyclerCartAdapter adapter;
+    //    RecyclerCartAdapter adapter;
     RecyclerCartAdapter adapter;
     public void setElements(List<Product> elements) {
         this.elements = elements;
@@ -66,15 +65,14 @@ public class CartFragment extends Fragment
     }
 
     private void initViews(View view) {
-//        btnCreateOrder=view.findViewById(R.id.btn_create_order);
-//         btnCreateOrder.setOnClickListener(this);
 
-        recyclerView=view.findViewById(R.id.recycler_cart);
+
+        RecyclerView recyclerView = view.findViewById(R.id.recycler_cart);
 
         recyclerView.setHasFixedSize(true);
         int numberOfColumns = 1;
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity().getApplicationContext(), numberOfColumns));
-//        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
+
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity().getApplicationContext(),numberOfColumns);
 
 

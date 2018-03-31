@@ -235,17 +235,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 } else {
                     Toast.makeText(MainActivity.this, "Светлая тема", Toast.LENGTH_SHORT).show();
-                    int colorIntText = getResources().getColor(R.color.colorWhite);
-                    int colorIntIco = getResources().getColor(R.color.colorWhite);
                     ed.putBoolean(Preferences.NAV_THEME_DARK, false);
                 }
 
                 ed.apply();
                 Intent reloadIntent = new Intent(MainActivity.this, MainActivity.class);
                 startActivity(reloadIntent);
-//                applyTheme();
-//                init();
-//                applyColors();
+//
             }
         });
         builder.show();
@@ -263,14 +259,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int colorGroupText;
         if (isDarkTheme) {
             colorIntText = getResources().getColor(R.color.colorWhite);
-            colorIntIco = getResources().getColor(R.color.colorWhite);
             colorBG = getResources().getColor(R.color.colorDarkGray);
             colorGroupText = getResources().getColor(R.color.colorGrayLight);
 
         } else {
             colorIntText = getResources().getColor(R.color.colorDarkGray);
             colorGroupText = getResources().getColor(R.color.colorGrayDark);
-            colorIntIco = getResources().getColor(R.color.colorDarkGray);
             colorBG = getResources().getColor(R.color.colorWhite);
 
         }
@@ -332,13 +326,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             showElementsUI();
 
         } else if (id == R.id.nav_my_orders) {
-//            if (orderFragment == null) {
-//                orderFragment = new AddToCartFragment();
-//            }
- //           addition=getResources().getString(R.string.my_orders);
-//            fillFragment(orderFragment);
-//            hideElementsUI();
-//            Toast.makeText(MainActivity.this, addition, Toast.LENGTH_SHORT).show();
 
             Intent inten = new Intent(MainActivity.this, ProductsActivity.class);
             startActivity(inten);
@@ -361,7 +348,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(intent1);
 
         }
-    //    title += addition;
+
         toolbar.setTitle(addition);
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -387,7 +374,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     void fillFragment(Fragment fragment) {
         fragmentManager = getFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
-        //   SelectAutoFragment fragment = new SelectAutoFragment();
+
         fragmentTransaction.replace(R.id.container_frame, fragment);
         fragmentTransaction.commit();
     }

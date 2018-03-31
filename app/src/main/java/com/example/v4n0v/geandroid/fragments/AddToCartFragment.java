@@ -38,7 +38,6 @@ public class AddToCartFragment extends Fragment{
         this.selectedElements = selectedElements;
     }
 
-    private RecyclerView recyclerView;
     RecyclerProductsAdaper adapter;
     private List<Glass> elements;
     private List<Product> selectedElements;
@@ -50,12 +49,7 @@ public class AddToCartFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_products, container, false);
-
-
-
-
         initViews(view);
-
         return view;
     }
 
@@ -75,7 +69,7 @@ public class AddToCartFragment extends Fragment{
 
     private void initViews(View view) {
 
-        recyclerView=view.findViewById(R.id.recycler_cart);
+        RecyclerView recyclerView = view.findViewById(R.id.recycler_cart);
 
         recyclerView.setHasFixedSize(true);
         int numberOfColumns = 1;

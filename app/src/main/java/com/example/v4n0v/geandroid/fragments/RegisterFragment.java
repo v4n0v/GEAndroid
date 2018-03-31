@@ -19,10 +19,10 @@ import com.example.v4n0v.geandroid.R;
 
 public class RegisterFragment extends Fragment implements View.OnTouchListener{
 
-    EditText phoneEditText;
-    EditText nameEditText;
-    EditText mailEditText;
-    Button acceptButton;
+    private EditText phoneEditText;
+    private EditText nameEditText;
+    private  EditText mailEditText;
+    private  Button acceptButton;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {

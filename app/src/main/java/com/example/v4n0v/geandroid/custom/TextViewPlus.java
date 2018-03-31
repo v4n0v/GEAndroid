@@ -16,7 +16,7 @@ import com.example.v4n0v.geandroid.R;
  */
 
 public class TextViewPlus extends android.support.v7.widget.AppCompatTextView {
-    String TAG = "TextViewPlus";
+    private String TAG = "TextViewPlus";
     public TextViewPlus(Context context) {
         super(context);
     }
