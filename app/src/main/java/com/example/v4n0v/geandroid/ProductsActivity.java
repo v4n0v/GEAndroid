@@ -100,14 +100,14 @@ DrawerLayout drawer;
         serviceElements.add(service2);
         serviceElements.add(service3);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar =  findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         customFragmentPA = new CustomFragmentPA(getSupportFragmentManager());
         // initViewPager();
         initFragments();
 
         // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container_tabs);
+        mViewPager =   findViewById(R.id.container_tabs);
         mViewPager.setAdapter(customFragmentPA);
 
         TabLayout tabLayout = findViewById(R.id.tabs);

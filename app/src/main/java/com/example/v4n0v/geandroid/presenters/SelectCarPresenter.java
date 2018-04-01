@@ -1,5 +1,7 @@
 package com.example.v4n0v.geandroid.presenters;
 
+import android.util.Log;
+
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 import com.example.v4n0v.geandroid.SelectCarView;
@@ -11,13 +13,17 @@ import java.util.List;
 @InjectViewState
 public class SelectCarPresenter extends MvpPresenter<SelectCarView> {
     private SelectCarModel selectCarModel = new SelectCarModel();
+    private static final String TAG = "MainPresenter";
 
-    public SelectCarPresenter(){
-
+    public SelectCarPresenter(String str){
+        Log.d(TAG, str);
     }
     // передаем в данные с сервера и связываем с актививти
     public void initMarksList(){
-        selectCarModel.setMarksList(getMarksFromServer());
+        // если данные еще не получены, тогда получить, если получены берем из модели
+        if (selectCarModel.getMarksList()==null || selectCarModel.getMarksList().size()==0) {
+            selectCarModel.setMarksList(getMarksFromServer());
+        }
         getViewState().fillMarksList(selectCarModel.getMarksList().get(0));
     }
 
