@@ -6,22 +6,16 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.example.v4n0v.geandroid.core.GetListOperator;
-import com.example.v4n0v.geandroid.core.data.DataMap;
-import com.example.v4n0v.geandroid.core.request_builder.RequestController;
 
 public class SplashActivity extends AppCompatActivity {
 
     final String TAG = "Splash";
 
-    DataMap dataMap;
-    GetListOperator getListOperator;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        getListOperator=new GetListOperator();
-        dataMap=DataMap.getInstance();
+
         fillMarksListView();
         // пока тут лопата, будет заменена на загрузку данных
         Thread timer = new Thread(){
