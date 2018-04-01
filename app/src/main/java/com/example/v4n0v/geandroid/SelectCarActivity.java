@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.arellomobile.mvp.presenter.InjectPresenter;
@@ -60,6 +61,12 @@ public class SelectCarActivity extends MvpAppCompatActivity implements SelectCar
     @Override
     public void updateList() {
         adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onMarkSelect(String title) {
+        Toast.makeText(this, "Выбран "+title, Toast.LENGTH_SHORT).show();
+
     }
 
 

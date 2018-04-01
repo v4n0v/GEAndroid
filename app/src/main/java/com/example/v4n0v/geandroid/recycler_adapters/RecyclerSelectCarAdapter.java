@@ -1,6 +1,7 @@
 package com.example.v4n0v.geandroid.recycler_adapters;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +15,7 @@ import butterknife.ButterKnife;
 
 public class RecyclerSelectCarAdapter extends RecyclerView.Adapter<RecyclerSelectCarAdapter.ViewHolder> {
 
-
+    private final String TAG = "SelectCarAdapter";
     IListPresenter presenter;
 
     public RecyclerSelectCarAdapter(IListPresenter presenter) {
@@ -37,7 +38,7 @@ public class RecyclerSelectCarAdapter extends RecyclerView.Adapter<RecyclerSelec
         return presenter.getViewCount();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder implements IListCarRawView {
+    class ViewHolder extends RecyclerView.ViewHolder implements IListCarRawView, View.OnClickListener {
         int pos = -1;
         @BindView(R.id.car_title_tv)
         TextView carTitleTextView;
@@ -55,6 +56,14 @@ public class RecyclerSelectCarAdapter extends RecyclerView.Adapter<RecyclerSelec
         @Override
         public void setText(String text) {
             carTitleTextView.setText(text);
+        }
+
+
+        @Override
+        public void onClick(View view) {
+            Log.d(TAG, "click "+ getLayoutPosition());
+            int pos = getLayoutPosition();
+            presenter.selectItem(pos);
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.example.v4n0v.geandroid.presenters;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
@@ -33,6 +34,12 @@ public class SelectCarPresenter extends MvpPresenter<SelectCarView> {
         @Override
         public int getViewCount() {
             return items.size();
+        }
+
+        @Override
+        public void selectItem(int pos) {
+            String title = selectCarModel.getMarksList().get(pos);
+            getViewState().onMarkSelect(title);
         }
     }
 

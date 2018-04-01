@@ -11,4 +11,6 @@ public interface SelectCarView extends MvpView{
     void fillMarksList(String string);
 
     void updateList();
+
+    void onMarkSelect(String title);
 }

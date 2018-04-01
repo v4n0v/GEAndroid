@@ -8,5 +8,5 @@ public interface IListPresenter {
     int pos = -1;
     void bindView (IListCarRawView view);
     int getViewCount();
-
+    void selectItem(int pos);
 }
