@@ -46,6 +46,7 @@ public class RecyclerSelectCarAdapter extends RecyclerView.Adapter<RecyclerSelec
         ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+            carTitleTextView.setOnClickListener(this);
         }
 
         @Override
