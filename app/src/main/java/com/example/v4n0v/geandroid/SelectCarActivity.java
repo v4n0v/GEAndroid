@@ -1,17 +1,17 @@
 package com.example.v4n0v.geandroid;
 
 import android.os.Bundle;
-
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.example.v4n0v.geandroid.presenters.SelectCarPresenter;
+import com.example.v4n0v.geandroid.recycler_adapters.RecyclerSelectCarAdapter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -19,12 +19,15 @@ import butterknife.ButterKnife;
 public class SelectCarActivity extends MvpAppCompatActivity implements SelectCarView{
     // todo когда вводится текст, должен фильтроваться список
     @BindView(R.id.select_mark_edittext) EditText selectMarkEditText;
-    @BindView(R.id.select_mark_list_view) ListView selectMarkListView;
-    @BindView(R.id.mark_text) TextView selectMarkTextView;
+    @BindView(R.id.select_mark_recycler_view)  RecyclerView selectMarkRecyclerView;
+
+
     @BindView(R.id.car_toolbar) Toolbar toolbar;
 
     @InjectPresenter
     SelectCarPresenter presenter;
+
+    RecyclerSelectCarAdapter adapter;
 
     @ProvidePresenter
     public SelectCarPresenter provideMainPresenter() {
@@ -40,18 +43,24 @@ public class SelectCarActivity extends MvpAppCompatActivity implements SelectCar
         setSupportActionBar(toolbar);
         ButterKnife.bind(this);
 
-        init();
     }
 
     @Override
     public void init() {
         presenter.initMarksList();
+        selectMarkRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        adapter= new RecyclerSelectCarAdapter(presenter.getListPresenter());
+        selectMarkRecyclerView.setAdapter(adapter);
     }
 
     @Override
-    public void fillMarksList(String string){
-        selectMarkTextView.setText(string);
+    public void fillMarksList(String string) {
    }
+
+    @Override
+    public void updateList() {
+        adapter.notifyDataSetChanged();
+    }
 
 
 }

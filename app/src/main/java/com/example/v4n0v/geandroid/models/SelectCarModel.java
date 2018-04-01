@@ -10,28 +10,34 @@ public class SelectCarModel {
     List<String> generations;
 
 
-    public SelectCarModel( ) {
+    public SelectCarModel() {
         this.marks = new ArrayList<>();
         this.models = new ArrayList<>();
         this.generations = new ArrayList<>();
     }
 
 
-    public void setMarksList(List<String> marks){
-        this.marks=marks;
+    public void setMarksList(List<String> marks) {
+        this.marks = marks;
     }
 
-     public void getIdByPosition(int pos) {
-         marks.get(pos);
-     }
+    public void getIdByPosition(int pos) {
+        marks.get(pos);
+    }
+
     public void addMarkElement(String element) {
         marks.add(element);
     }
+
     public void removeMarkElement(String element) {
         marks.add(element);
     }
 
     public List<String> getMarksList() {
         return marks;
+    }
+
+    public int getCount() {
+        return marks.size();
     }
 }

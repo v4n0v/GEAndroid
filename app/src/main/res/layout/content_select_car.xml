@@ -16,16 +16,13 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Введите название марки" />
-    <TextView
-        android:id="@+id/mark_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:text="@string/type_mark" />
 
-    <ListView
-        android:id="@+id/select_mark_list_view"
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/select_mark_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    </ListView>
+    </android.support.v7.widget.RecyclerView>
 
 </LinearLayout>
