@@ -16,7 +16,7 @@ import butterknife.ButterKnife;
 public class RecyclerSelectCarAdapter extends RecyclerView.Adapter<RecyclerSelectCarAdapter.ViewHolder> {
 
     private final String TAG = "SelectCarAdapter";
-    IListPresenter presenter;
+    private IListPresenter presenter;
 
     public RecyclerSelectCarAdapter(IListPresenter presenter) {
         this.presenter = presenter;
@@ -61,8 +61,8 @@ public class RecyclerSelectCarAdapter extends RecyclerView.Adapter<RecyclerSelec
 
         @Override
         public void onClick(View view) {
-            Log.d(TAG, "click "+ getLayoutPosition());
             int pos = getLayoutPosition();
+            Log.d(TAG, "click "+pos);
             presenter.selectItem(pos);
         }
     }

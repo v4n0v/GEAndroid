@@ -13,9 +13,16 @@ import com.example.v4n0v.geandroid.recycler_adapters.IListPresenter;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.subjects.PublishSubject;
+
 @InjectViewState
 public class SelectCarPresenter extends MvpPresenter<SelectCarView> {
 
+    private SelectCarModel selectCarModel = new SelectCarModel();
+    private static final String TAG = "MainPresenter";
+    private PublishSubject<String> subject;
 
     public ListPresenter getListPresenter() {
         return listPresenter;
@@ -23,6 +30,11 @@ public class SelectCarPresenter extends MvpPresenter<SelectCarView> {
 
     private ListPresenter listPresenter = new ListPresenter();
 
+    public void setSubject(PublishSubject<String> subject) {
+        this.subject = subject;
+        this.subject.subscribe(observer);
+    }
+    List<String> filterderList;
     class ListPresenter implements IListPresenter {
         List<String> items = new ArrayList<>();
 
@@ -42,17 +54,19 @@ public class SelectCarPresenter extends MvpPresenter<SelectCarView> {
             getViewState().onMarkSelect(title);
         }
     }
-
+    Observer<String> observer;
     @Override
     protected void onFirstViewAttach() {
         super.onFirstViewAttach();
+        filterderList=new ArrayList<>();
+        initObserver();
+
         getViewState().init();
         listPresenter.items =selectCarModel.getMarksList();
         getViewState().updateList();
     }
 
-    private SelectCarModel selectCarModel = new SelectCarModel();
-    private static final String TAG = "MainPresenter";
+
 
     public SelectCarPresenter(String str){
         Log.d(TAG, str);
@@ -79,5 +93,53 @@ public class SelectCarPresenter extends MvpPresenter<SelectCarView> {
         list.add("КРАЗ");
         list.add("АЗАЗА");
         return list;
+    }
+
+
+    void initObserver(){
+        observer = new Observer<String>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                Log.d(TAG,"subscribed");
+            }
+
+            @Override
+            public void onNext(String s) {
+                // если стрка пуста, тогда заполняем исходным списком
+                if (s.length()==0){
+                    listPresenter.items = selectCarModel.getMarksList();
+                } else {
+                // иначе проверяем на совпадения
+                    // обнуляем отфильтрованный список
+                    filterderList.clear();
+                    // спасиваем счетчик совпадений
+                    int count = 0;
+                    for (int i = 0; i < listPresenter.items.size(); i++) {
+                        if (listPresenter.items.get(i).toLowerCase().contains(s.toLowerCase())) {
+                            filterderList.add(listPresenter.items.get(i));
+                            count++;
+                        }
+                    }
+                    // если совпадения имеются, заменяем список на фильтрованный
+                    if (count > 0) {
+                        listPresenter.items = filterderList;
+                    } else {
+                       listPresenter.items = selectCarModel.getMarksList();
+                    }
+                }
+                // обновляем состояние адаптера
+                getViewState().updateList();
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Log.d(TAG,"error");
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        };
     }
 }

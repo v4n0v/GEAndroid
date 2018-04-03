@@ -5,7 +5,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.arellomobile.mvp.MvpAppCompatActivity;
@@ -13,9 +12,10 @@ import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.example.v4n0v.geandroid.presenters.SelectCarPresenter;
 import com.example.v4n0v.geandroid.recycler_adapters.RecyclerSelectCarAdapter;
-
+import com.jakewharton.rxbinding2.widget.RxTextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.reactivex.subjects.PublishSubject;
 
 public class SelectCarActivity extends MvpAppCompatActivity implements SelectCarView{
     // todo когда вводится текст, должен фильтроваться список
@@ -44,6 +44,9 @@ public class SelectCarActivity extends MvpAppCompatActivity implements SelectCar
         setSupportActionBar(toolbar);
         ButterKnife.bind(this);
 
+
+
+
     }
 
     @Override
@@ -52,6 +55,16 @@ public class SelectCarActivity extends MvpAppCompatActivity implements SelectCar
         selectMarkRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         adapter= new RecyclerSelectCarAdapter(presenter.getListPresenter());
         selectMarkRecyclerView.setAdapter(adapter);
+
+        PublishSubject<String> subject = PublishSubject.create();
+        presenter.setSubject(subject);
+
+        RxTextView.afterTextChangeEvents(selectMarkEditText)
+                .subscribe(s -> {
+                    subject.onNext(selectMarkEditText.getText().toString());
+                });
+
+
     }
 
     @Override
