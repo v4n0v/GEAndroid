@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -17,7 +19,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.subjects.PublishSubject;
 
-public class SelectCarActivity extends MvpAppCompatActivity implements SelectCarView{
+public class SelectCarActivity extends MvpAppCompatActivity implements SelectCarView {
     // todo когда вводится текст, должен фильтроваться список
     @BindView(R.id.select_mark_edittext) EditText selectMarkEditText;
     @BindView(R.id.select_mark_recycler_view)  RecyclerView selectMarkRecyclerView;
@@ -81,6 +83,7 @@ public class SelectCarActivity extends MvpAppCompatActivity implements SelectCar
         Toast.makeText(this, "Выбран "+title, Toast.LENGTH_SHORT).show();
 
     }
+
 
 
 }
