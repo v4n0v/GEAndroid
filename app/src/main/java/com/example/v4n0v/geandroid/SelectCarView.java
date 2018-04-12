@@ -3,6 +3,7 @@ package com.example.v4n0v.geandroid;
 import com.arellomobile.mvp.MvpView;
 import com.arellomobile.mvp.viewstate.strategy.AddToEndSingleStrategy;
 import com.arellomobile.mvp.viewstate.strategy.StateStrategyType;
+import com.example.v4n0v.geandroid.entities.IdTitleObj;
 
 @StateStrategyType(value = AddToEndSingleStrategy.class)
 public interface SelectCarView extends MvpView{
@@ -12,5 +13,5 @@ public interface SelectCarView extends MvpView{
 
     void updateList();
 
-    void onMarkSelect(String title);
+    void onItemSelect(IdTitleObj title);
 }

@@ -22,6 +22,9 @@ public class Preferences {
     public static final int ID_IN_CART_ICO = R.drawable.ic_shoping_cart_added;
     public static final int ID_OUT_CART_ICO = R.drawable.ic_shoping_cart_not_added;
 
+    public final static String GUEST_KEY = "dd69167145c6718ea72587bdc97305e6cf6b02bf0a723417260ed3314ebc5047";
+
+
 
 
 

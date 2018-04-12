@@ -12,11 +12,16 @@ import android.widget.Toast;
 import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
+import com.example.v4n0v.geandroid.entities.IdTitleObj;
 import com.example.v4n0v.geandroid.presenters.SelectCarPresenter;
 import com.example.v4n0v.geandroid.recycler_adapters.RecyclerSelectCarAdapter;
 import com.jakewharton.rxbinding2.widget.RxTextView;
+import com.jakewharton.rxbinding2.widget.TextViewAfterTextChangeEvent;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
 import io.reactivex.subjects.PublishSubject;
 
 public class SelectCarActivity extends MvpAppCompatActivity implements SelectCarView {
@@ -34,8 +39,8 @@ public class SelectCarActivity extends MvpAppCompatActivity implements SelectCar
 
     @ProvidePresenter
     public SelectCarPresenter provideMainPresenter() {
-        String string = "hello";
-        return new SelectCarPresenter(string);
+
+        return new SelectCarPresenter(AndroidSchedulers.mainThread());
     }
 
 
@@ -45,10 +50,6 @@ public class SelectCarActivity extends MvpAppCompatActivity implements SelectCar
         setContentView(R.layout.activity_select_car);
         setSupportActionBar(toolbar);
         ButterKnife.bind(this);
-
-
-
-
     }
 
     @Override
@@ -58,15 +59,17 @@ public class SelectCarActivity extends MvpAppCompatActivity implements SelectCar
         adapter= new RecyclerSelectCarAdapter(presenter.getListPresenter());
         selectMarkRecyclerView.setAdapter(adapter);
 
+
         PublishSubject<String> subject = PublishSubject.create();
         presenter.setSubject(subject);
 
         RxTextView.afterTextChangeEvents(selectMarkEditText)
-                .subscribe(s -> {
-                    subject.onNext(selectMarkEditText.getText().toString());
+                .subscribe(new Consumer<TextViewAfterTextChangeEvent>() {
+                    @Override
+                    public void accept(TextViewAfterTextChangeEvent s) throws Exception {
+                        subject.onNext(selectMarkEditText.getText().toString());
+                    }
                 });
-
-
     }
 
     @Override
@@ -79,8 +82,8 @@ public class SelectCarActivity extends MvpAppCompatActivity implements SelectCar
     }
 
     @Override
-    public void onMarkSelect(String title) {
-        Toast.makeText(this, "Выбран "+title, Toast.LENGTH_SHORT).show();
+    public void onItemSelect(IdTitleObj object) {
+        Toast.makeText(this, "Выбран "+object.getTitle()+", id="+object.getId(), Toast.LENGTH_SHORT).show();
 
     }
 
